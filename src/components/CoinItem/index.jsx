@@ -11,6 +11,20 @@ const CoinItem = ({marketCoin}) => {
     symbol,
     market_cap,image} 
     = marketCoin;
+
+    const percentageColor =price_change_percentage_24h < 0 ? '#ea3943' : '#17c784'
+    const notmalizeMarketCap =(marketCap) =>   {
+      if(marketCap > 1_000_000_000_000){
+        return `${Math.floor(marketCap/1_000_000_000_000)} T`
+      } if(marketCap > 1_000_000_000){
+        return `${Math.floor(marketCap/1_000_000_000)} B`
+      } if(marketCap > 1_000_000){
+        return `${Math.floor(marketCap/1_000_000)} M`
+      }if(marketCap > 1_000){
+        return `${Math.floor(marketCap/1_000)} K`
+      }
+      return marketCap;
+    }
   return (
     <View style={styles.coinContainer}>
          {/* <Text style={{ color:'white' }}>Hello World!</Text> */}
@@ -24,13 +38,17 @@ const CoinItem = ({marketCoin}) => {
                   <Text style={ styles.rank }> {market_cap_rank} </Text>
                 </View>
                 <Text style={ styles.text }>  {symbol.toUpperCase()} </Text>
-                    <AntDesign name="caretup" size={12} color="white" style={{ alignSelf: 'center' }} />
-                    <Text style={ styles.text }>  {price_change_percentage_24h}%</Text>
+                    <AntDesign 
+                    name={price_change_percentage_24h <0 ? 'caretdown' : 'caretup'} 
+                    size={12} 
+                    color={percentageColor} 
+                    style={{ alignSelf: 'center' }} />
+                    <Text style={{ color:percentageColor }}>  {price_change_percentage_24h.toFixed(2)} % </Text>
                 </View>
           </View>
           <View style ={{ marginLeft: 'auto' }}>
-              <Text style={styles.title}> {current_price}</Text>
-              <Text style={styles.text}>{market_cap} T</Text>
+              <Text style={styles.title}> {current_price.toFixed(2)}</Text>
+              <Text style={styles.text}> MCap: {notmalizeMarketCap(market_cap) } </Text>
           </View>
     </View>
       

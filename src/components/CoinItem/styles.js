@@ -4,27 +4,27 @@ const styles = StyleSheet.create({
    
     title :{
       color: 'white',
-      fontSize:18,
+      fontSize:16,
       fontWeight: 'bold',
       marginBottom: 3
     },
     text:{
       color: 'white',
-      marginRight: 10,
+      marginRight: 5,
       alignSelf:'center',
     },
     coinContainer: {
       flexDirection: 'row',
       borderBottomWidth: StyleSheet.hairlineWidth,
-      borderBottomColor: 'grey', //'#282828', 
+      borderBottomColor: '#282828', //'grey', 
       padding:15,
     },
     coinImage : {
        height:30,
        width:30, 
-       marginRight:10, 
+       marginRight:5, 
        alignSelf:'center',
-       marginLeft: 20, 
+      //  marginLeft: 20, 
       },
     rank: {
       fontWeight: 'bold',
